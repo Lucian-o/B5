@@ -29,6 +29,27 @@
         <p class="panel-note">Your list updates as soon as you save a change.</p>
         <p id="page-message" class="message" role="status" aria-live="polite"></p>
       </section>
+
+      <div class="main-column">
+        <!-- ID search has its own result; title search filters the main list. -->
+        <section class="panel" aria-labelledby="search-heading">
+          <h2 id="search-heading">Search movies</h2>
+          <div class="search-grid">
+            <div>
+              <form id="id-search-form" novalidate>
+                <label for="search-id">Search by Movie ID</label>
+                <div class="input-action">
+                  <input id="search-id" name="search-id" type="number" min="1" step="1" placeholder="e.g. 108">
+                  <button type="submit">Search ID</button>
+                </div>
+              </form>
+              <div id="id-search-result" class="search-result" role="status" aria-live="polite">
+                Enter a Movie ID to see its details.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 </body>
