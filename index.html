@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage, search and sort your movie collection.">
+  <link rel="icon" href="data:,">
+  <title>Movie Manager</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <h1>Movie Manager</h1>
+      <p>Manage, search and sort your movie collection.</p>
+    </header>
+
+    <div class="app-layout">
+      <!-- Maintenance panel opens in a larger window, based off client feedback. -->
+      <section class="panel maintenance-panel" aria-labelledby="maintenance-heading">
+        <h2 id="maintenance-heading">Movie maintenance</h2>
+        <p class="section-description">Choose an action to manage a movie.</p>
+        <div class="maintenance-actions">
+          <button type="button" data-open-action="add">Add movie</button>
+          <button type="button" class="update-button" data-open-action="update">Update movie</button>
+          <button type="button" class="delete-button" data-open-action="delete">Delete movie</button>
+        </div>
+        <p class="panel-note">Your list updates as soon as you save a change.</p>
+        <p id="page-message" class="message" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+</body>
+
+
+
+
+</html>

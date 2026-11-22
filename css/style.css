@@ -1,0 +1,50 @@
+/* Root styles */
+:root {
+  color-scheme: dark;
+  --page-colour: #1c1726;
+  --panel-colour: #2b2338;
+  --accent-colour: #70528f;
+  --text-colour: #f7f3fc;
+  --muted-colour: #c9bed5;
+  --border-colour: #51445f;
+  --delete-colour: #bf344b;
+  --error-colour: #ffbdc8;
+}
+
+.page-header p,
+.section-description,
+.panel-note {
+  color: var(--muted-colour);
+}
+
+/* Whole page styles */
+
+body {
+  margin: 0;
+  background-color: var(--page-colour);
+  color: var(--text-colour);
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.app {
+  width: calc(100% - 48px);
+  max-width: 1320px;
+  margin: 32px auto 24px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.9rem, 4vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Header styles */
+.page-header {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-colour);
+}
