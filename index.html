@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage, search and sort your movie collection.">
+  <link rel="icon" href="data:,">
+  <title>Movie Manager</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="app">
+    <!-- Heading -->
+    <header class="page-header">
+      <h1>Movie Manager</h1>
+      <p>Manage, search and sort your movie collection.</p>
+    </header>
+
+    <div class="app-layout">
+      <!-- Maintenance panel (opens in a larger window) -->
+      <section class="panel" aria-labelledby="maintenance-heading">
+        <h2 id="maintenance-heading">Movie maintenance</h2>
+        <p class="section-description">Choose an action to manage a movie.</p>
+        <div class="maintenance-actions">
+          <button type="button" data-open-action="add">Add movie</button>
+          <button type="button" class="update-button" data-open-action="update">Update movie</button>
+          <button type="button" class="delete-button" data-open-action="delete">Delete movie</button>
+        </div>
+        <p class="panel-note">Your list updates as soon as you save a change.</p>
+        <p id="page-message" class="message" role="status" aria-live="polite"></p>
+      </section>
+
+      <div class="main-column">
+        <!-- Search panel -->
+        <section class="panel" aria-labelledby="search-heading">
+          <h2 id="search-heading">Search movies</h2>
+          <div class="search-grid">
+            <div>
+              <form id="id-search-form">
+                <label for="search-id">Search by Movie ID</label>
+                <div class="input-action">
+                  <input id="search-id" name="search-id" type="number" min="1" step="1" placeholder="e.g. 108">
+                  <button type="submit">Search ID</button>
+                </div>
+              </form>
+              <div id="id-search-result" class="search-result" role="status" aria-live="polite">
+                Enter a Movie ID to see its details.
+              </div>
+            </div>
+            <div>
+              <form id="title-search-form">
+                <label for="search-title">Search by Title</label>
+                <div class="input-action">
+                  <input id="search-title" name="search-title" type="search" placeholder="Enter part of a title">
+                  <button type="submit">Search Title</button>
+                </div>
+              </form>
+              <p class="search-help">Matching titles appear in the list below. Select Refresh to show all movies.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sort panel -->
+        <section class="panel" aria-labelledby="sort-heading">
+          <h2 id="sort-heading">Sort movies</h2>
+          <div class="sort-actions" role="group" aria-label="Movie sort order">
+            <button type="button" data-sort="title-ascending" aria-pressed="false">Title A–Z</button>
+            <button type="button" data-sort="title-descending" aria-pressed="false">Title Z–A</button>
+            <button type="button" data-sort="rating-descending" aria-pressed="false">Best Movies</button>
+          </div>
+          <p class="panel-note">Best Movies shows the highest ratings first.</p>
+        </section>
+        
+        <!-- Movie list panel -->
+        <section class="panel" aria-labelledby="list-heading">
+          <div class="list-heading">
+            <div>
+              <h2 id="list-heading">Movie list</h2>
+              <p id="list-count" class="list-count" aria-live="polite"></p>
+            </div>
+            <button id="refresh-button" type="button">Refresh</button>
+          </div>
+          <div class="table-wrap" role="region" aria-label="Movie list" tabindex="0">
+            <table>
+              <caption class="hidden">Movies in the current list view</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Movie ID</th>
+                  <th scope="col">Title</th>
+                  <th scope="col" class="numeric">Year</th>
+                  <th scope="col" class="numeric">Rating / 10</th>
+                </tr>
+              </thead>
+              <tbody id="movie-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer class="page-footer">Please note that changes last until you reload this page. The 'Refresh' button updates the list without resetting your movies.</footer>
+  </main>
+  
+  <!-- Maintenance dialog -->
+  <dialog id="maintenance-dialog" class="maintenance-dialog" aria-labelledby="dialog-heading" aria-describedby="dialog-help">
+    <div class="dialog-heading">
+      <h2 id="dialog-heading">Add a movie</h2>
+      <button id="close-dialog-button" type="button">Close</button>
+    </div>
+    <p id="dialog-help" class="dialog-help"></p>
+
+    <form id="movie-form">
+      <div class="form-grid">
+        <div class="field">
+          <label for="movie-action">Action</label>
+          <select id="movie-action" name="action">
+            <option value="add">Add movie</option>
+            <option value="update">Update movie</option>
+            <option value="delete">Delete movie</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="movie-id">Movie ID</label>
+          <input id="movie-id" name="movie-id" type="number" min="1" step="1" placeholder="e.g. 111" required>
+        </div>
+        <div class="field full-width">
+          <label for="movie-title">Title</label>
+          <input id="movie-title" name="title" type="text" maxlength="200" placeholder="Enter the movie title" required>
+        </div>
+        <div class="field">
+          <label for="movie-year">Year</label>
+          <input id="movie-year" name="year" type="number" min="1" max="9999" step="1" placeholder="e.g. 2001" required>
+        </div>
+        <div class="field">
+          <label for="movie-rating">Rating (out of 10)</label>
+          <input id="movie-rating" name="rating" type="number" min="0" max="10" step="any" placeholder="e.g. 8" required>
+        </div>
+      </div>
+      <p id="maintenance-message" class="message" role="alert" tabindex="-1"></p>
+      <div class="dialog-actions">
+        <button id="cancel-dialog-button" type="button">Cancel</button>
+        <button id="submit-movie-button" type="submit">Submit</button>
+      </div>
+    </form>
+  </dialog>
+  <noscript><p class="noscript-message">Enable JavaScript to manage your movie collection.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,307 @@
+/* Root styles */
+:root {
+  color-scheme: dark;
+  --page-colour: #1c1726;
+  --panel-colour: #2b2338;
+  --accent-colour: #70528f;
+  --text-colour: #f7f3fc;
+  --muted-colour: #c9bed5;
+  --border-colour: #51445f;
+  --delete-colour: #bf344b;
+  --error-colour: #ffbdc8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Whole page styles */
+body {
+  margin: 0;
+  background-color: var(--page-colour);
+  color: var(--text-colour);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.app {
+  width: calc(100% - 48px);
+  max-width: 1320px;
+  margin: 32px auto 24px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.9rem, 4vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 1.3rem;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.page-header p,
+.page-footer,
+.section-description,
+.panel-note,
+.search-help {
+  color: var(--muted-colour);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+/* Places maintenance on the left and the main content on the right. */
+.app-layout {
+  display: grid;
+  grid-template-columns: 295px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.main-column {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* Header */
+.page-header {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-colour);
+}
+
+.page-header p {
+  margin: 0;
+}
+
+.panel {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border-colour);
+  border-radius: 8px;
+  background-color: var(--panel-colour);
+}
+
+button {
+  min-height: 46px;
+  padding: 10px 17px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: var(--accent-colour);
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.15);
+}
+
+/* Footer */
+.page-footer {
+  margin-top: 24px;
+}
+
+
+/* Maintenance section */
+.section-description {
+  margin: -2px 0 22px;
+}
+
+.maintenance-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.update-button {
+  border-color: #88729d;
+  background-color: transparent;
+}
+
+.delete-button {
+  background-color: var(--delete-colour);
+}
+
+.panel-note {
+  margin: 18px 0 0;
+}
+
+/* Confirmation messages */
+.message {
+  margin: 18px 0 0;
+  padding: 12px;
+  border-left: 3px solid #c7a6e4;
+  background-color: var(--page-colour);
+  overflow-wrap: anywhere;
+}
+
+.message:empty {
+  display: none;
+}
+
+.is-error {
+  color: var(--error-colour);
+  border-color: var(--error-colour);
+}
+
+/* Search section */
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.input-action {
+  display: flex;
+  gap: 9px;
+}
+
+.input-action button {
+  flex: 0 0 auto;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #81718f;
+  border-radius: 5px;
+  background-color: var(--page-colour);
+  color: var(--text-colour);
+}
+
+input::placeholder {
+  color: #b6a9c3;
+  opacity: 1;
+}
+
+.search-result {
+  min-height: 54px;
+  margin-top: 14px;
+  padding: 13px 14px;
+  border: 1px solid var(--border-colour);
+  border-radius: 5px;
+  background-color: var(--page-colour);
+  color: var(--muted-colour);
+  font-size: 0.94rem;
+}
+
+/* Sort function */
+.sort-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Movie list */
+.list-heading {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.list-heading h2 {
+  margin-bottom: 4px;
+}
+
+.list-count {
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Maintenance dialog */
+.maintenance-dialog {
+  width: min(700px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 30px;
+  overflow-y: auto;
+  border: 1px solid #a18bb4;
+  border-radius: 12px;
+  background-color: var(--panel-colour);
+  color: var(--text-colour);
+}
+
+.dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dialog-heading h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.dialog-help {
+  margin: 18px 0 24px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.dialog-actions button {
+  min-width: 110px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
