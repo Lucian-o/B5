@@ -48,7 +48,8 @@ h2 {
 
 .page-header p,
 .section-description,
-.panel-note {
+.panel-note,
+.search-help {
   color: var(--muted-colour);
 }
 
