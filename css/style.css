@@ -47,6 +47,7 @@ h2 {
 }
 
 .page-header p,
+.page-footer,
 .section-description,
 .panel-note,
 .search-help {
@@ -56,17 +57,6 @@ h2 {
 button,
 input {
   font: inherit;
-}
-
-/* Header styles */
-.page-header {
-  padding-bottom: 24px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--border-colour);
-}
-
-.page-header p {
-  margin: 0;
 }
 
 /* Places maintenance on the left and the main content on the right. */
@@ -83,10 +73,20 @@ input {
   min-width: 0;
 }
 
-/* Shared appearance for the maintenance and search panels. */
+/* Header */
+.page-header {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-colour);
+}
+
+.page-header p {
+  margin: 0;
+}
+
 .panel {
   min-width: 0;
-  padding: 24px;
+  padding: 20px;
   border: 1px solid var(--border-colour);
   border-radius: 8px;
   background-color: var(--panel-colour);
@@ -107,6 +107,12 @@ button {
 button:hover {
   filter: brightness(1.15);
 }
+
+/* Footer */
+.page-footer {
+  margin-top: 24px;
+}
+
 
 /* Maintenance section */
 .section-description {
@@ -129,7 +135,6 @@ button:hover {
 
 .panel-note {
   margin: 18px 0 0;
-  font-size: 0.9rem;
 }
 
 /* Confirmation messages */
@@ -200,6 +205,51 @@ input::placeholder {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+/* Movie list */
+.list-heading {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.list-heading h2 {
+  margin-bottom: 4px;
+}
+
+.list-count {
+  margin: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 /* Responsive layout */

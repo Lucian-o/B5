@@ -9,16 +9,18 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <main class="app">
+    <!-- Heading -->
     <header class="page-header">
       <h1>Movie Manager</h1>
       <p>Manage, search and sort your movie collection.</p>
     </header>
 
     <div class="app-layout">
-      <!-- Maintenance panel opens in a larger window, based off client feedback. -->
-      <section class="panel maintenance-panel" aria-labelledby="maintenance-heading">
+      <!-- Maintenance panel (opens in a larger window) -->
+      <section class="panel" aria-labelledby="maintenance-heading">
         <h2 id="maintenance-heading">Movie maintenance</h2>
         <p class="section-description">Choose an action to manage a movie.</p>
         <div class="maintenance-actions">
@@ -31,7 +33,7 @@
       </section>
 
       <div class="main-column">
-        <!-- ID search has its own result; title search filters the main list. -->
+        <!-- Search panel -->
         <section class="panel" aria-labelledby="search-heading">
           <h2 id="search-heading">Search movies</h2>
           <div class="search-grid">
@@ -60,7 +62,8 @@
           </div>
         </section>
 
-        <section class="panel sort-panel" aria-labelledby="sort-heading">
+        <!-- Sort panel -->
+        <section class="panel" aria-labelledby="sort-heading">
           <h2 id="sort-heading">Sort movies</h2>
           <div class="sort-actions" role="group" aria-label="Movie sort order">
             <button type="button" data-sort="title-ascending" aria-pressed="false">Title A–Z</button>
@@ -69,8 +72,34 @@
           </div>
           <p class="panel-note">Best Movies shows the highest ratings first.</p>
         </section>
+        
+        <!-- Movie list panel -->
+        <section class="panel" aria-labelledby="list-heading">
+          <div class="list-heading">
+            <div>
+              <h2 id="list-heading">Movie list</h2>
+              <p id="list-count" class="list-count" aria-live="polite"></p>
+            </div>
+            <button id="refresh-button" type="button">Refresh</button>
+          </div>
+          <div class="table-wrap" role="region" aria-label="Movie list" tabindex="0">
+            <table>
+              <caption class="hidden">Movies in the current list view</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Movie ID</th>
+                  <th scope="col">Title</th>
+                  <th scope="col" class="numeric">Year</th>
+                  <th scope="col" class="numeric">Rating / 10</th>
+                </tr>
+              </thead>
+              <tbody id="movie-table-body"></tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </div>
+    <footer class="page-footer">Please note that changes last until you reload this page. The 'Refresh' button updates the list without resetting your movies.</footer>
   </main>
 </body>
 
