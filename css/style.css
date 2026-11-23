@@ -20,7 +20,7 @@ body {
   margin: 0;
   background-color: var(--page-colour);
   color: var(--text-colour);
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5;
@@ -150,6 +150,11 @@ button:hover {
   display: none;
 }
 
+.is-error {
+  color: var(--error-colour);
+  border-color: var(--error-colour);
+}
+
 /* Search section */
 .search-grid {
   display: grid;
@@ -224,14 +229,14 @@ input::placeholder {
   margin: 0;
 }
 
-.table-wrap {
-  overflow-x: auto;
-}
-
 table {
   width: 100%;
   min-width: 540px;
   border-collapse: collapse;
+}
+
+.table-wrap {
+  overflow-x: auto;
 }
 
 .hidden {
@@ -252,24 +257,51 @@ table {
   white-space: nowrap;
 }
 
-/* Responsive layout */
-@media (max-width: 800px) {
-  .app-layout {
-    grid-template-columns: 1fr;
-  }
+/* Maintenance dialog */
+.maintenance-dialog {
+  width: min(700px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 30px;
+  overflow-y: auto;
+  border: 1px solid #a18bb4;
+  border-radius: 12px;
+  background-color: var(--panel-colour);
+  color: var(--text-colour);
 }
 
-@media (max-width: 560px) {
-  .app {
-    width: calc(100% - 28px);
-    margin-top: 24px;
-  }
+.dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
 
-  .panel {
-    padding: 20px;
-  }
+.dialog-heading h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
 
-  .input-action {
-    flex-direction: column;
-  }
+.dialog-help {
+  margin: 18px 0 24px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.dialog-actions button {
+  min-width: 110px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
 }

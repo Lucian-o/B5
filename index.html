@@ -38,7 +38,7 @@
           <h2 id="search-heading">Search movies</h2>
           <div class="search-grid">
             <div>
-              <form id="id-search-form" novalidate>
+              <form id="id-search-form">
                 <label for="search-id">Search by Movie ID</label>
                 <div class="input-action">
                   <input id="search-id" name="search-id" type="number" min="1" step="1" placeholder="e.g. 108">
@@ -101,6 +101,49 @@
     </div>
     <footer class="page-footer">Please note that changes last until you reload this page. The 'Refresh' button updates the list without resetting your movies.</footer>
   </main>
-</body>
+  
+  <!-- Maintenance dialog -->
+  <dialog id="maintenance-dialog" class="maintenance-dialog" aria-labelledby="dialog-heading" aria-describedby="dialog-help">
+    <div class="dialog-heading">
+      <h2 id="dialog-heading">Add a movie</h2>
+      <button id="close-dialog-button" type="button">Close</button>
+    </div>
+    <p id="dialog-help" class="dialog-help"></p>
 
+    <form id="movie-form">
+      <div class="form-grid">
+        <div class="field">
+          <label for="movie-action">Action</label>
+          <select id="movie-action" name="action">
+            <option value="add">Add movie</option>
+            <option value="update">Update movie</option>
+            <option value="delete">Delete movie</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="movie-id">Movie ID</label>
+          <input id="movie-id" name="movie-id" type="number" min="1" step="1" placeholder="e.g. 111" required>
+        </div>
+        <div class="field full-width">
+          <label for="movie-title">Title</label>
+          <input id="movie-title" name="title" type="text" maxlength="200" placeholder="Enter the movie title" required>
+        </div>
+        <div class="field">
+          <label for="movie-year">Year</label>
+          <input id="movie-year" name="year" type="number" min="1" max="9999" step="1" placeholder="e.g. 2001" required>
+        </div>
+        <div class="field">
+          <label for="movie-rating">Rating (out of 10)</label>
+          <input id="movie-rating" name="rating" type="number" min="0" max="10" step="any" placeholder="e.g. 8" required>
+        </div>
+      </div>
+      <p id="maintenance-message" class="message" role="alert" tabindex="-1"></p>
+      <div class="dialog-actions">
+        <button id="cancel-dialog-button" type="button">Cancel</button>
+        <button id="submit-movie-button" type="submit">Submit</button>
+      </div>
+    </form>
+  </dialog>
+  <noscript><p class="noscript-message">Enable JavaScript to manage your movie collection.</p></noscript>
+</body>
 </html>
