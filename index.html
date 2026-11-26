@@ -24,7 +24,7 @@
         <h2 id="maintenance-heading">Movie maintenance</h2>
         <p class="section-description">Choose an action to manage a movie.</p>
         <div class="maintenance-actions">
-          <button type="button" data-open-action="add">Add movie</button>
+          <button type="button" class="add-button" data-open-action="add">Add movie</button>
           <button type="button" class="update-button" data-open-action="update">Update movie</button>
           <button type="button" class="delete-button" data-open-action="delete">Delete movie</button>
         </div>
@@ -45,9 +45,6 @@
                   <button type="submit">Search ID</button>
                 </div>
               </form>
-              <div id="id-search-result" class="search-result" role="status" aria-live="polite">
-                Enter a Movie ID to see its details.
-              </div>
             </div>
             <div>
               <form id="title-search-form">
@@ -57,7 +54,7 @@
                   <button type="submit">Search Title</button>
                 </div>
               </form>
-              <p class="search-help">Matching titles appear in the list below. Select Refresh to show all movies.</p>
+              <p class="search-help">Both searches show matching movies in the list below. Select Refresh to show all movies.</p>
             </div>
           </div>
         </section>

@@ -7,6 +7,7 @@
   --text-colour: #f7f3fc;
   --muted-colour: #c9bed5;
   --border-colour: #51445f;
+  --add-colour: #287a45;
   --delete-colour: #bf344b;
   --error-colour: #ffbdc8;
 }
@@ -124,9 +125,13 @@ button:hover {
   gap: 12px;
 }
 
+.add-button {
+  background-color: var(--add-colour);
+}
+
 .update-button {
   border-color: #88729d;
-  background-color: transparent;
+  background-color: var(--accent-colour);
 }
 
 .delete-button {
@@ -192,17 +197,6 @@ input {
 input::placeholder {
   color: #b6a9c3;
   opacity: 1;
-}
-
-.search-result {
-  min-height: 54px;
-  margin-top: 14px;
-  padding: 13px 14px;
-  border: 1px solid var(--border-colour);
-  border-radius: 5px;
-  background-color: var(--page-colour);
-  color: var(--muted-colour);
-  font-size: 0.94rem;
 }
 
 /* Sort function */

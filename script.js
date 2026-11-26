@@ -120,7 +120,6 @@ const elements = {
     submit: document.getElementById("submit-movie-button"),
     formMessage: document.getElementById("maintenance-message"),
     pageMessage: document.getElementById("page-message"),
-    idResult: document.getElementById("id-search-result"),
     searchId: document.getElementById("search-id"),
     searchTitle: document.getElementById("search-title"),
     tableBody: document.getElementById("movie-table-body"),
@@ -146,7 +145,11 @@ function displayMovies(movies) {
         }
         elements.tableBody.appendChild(row);
     }
-    elements.count.textContent = "Showing " + movies.length + " of " + movieList.movies.length + " movies";
+    if (movies.length === 0) {
+        elements.count.textContent = "0 results";
+    } else {
+        elements.count.textContent = "Showing " + movies.length + " of " + movieList.movies.length + " movies";
+    }
 }
 
 // Opens the form using the action stored on the clicked button.
@@ -169,6 +172,7 @@ function setMaintenanceMode() {
     elements.title.disabled = isDelete;
     elements.year.disabled = isDelete;
     elements.rating.disabled = isDelete;
+    elements.submit.classList.toggle("add-button", elements.action.value === "add");
     elements.submit.classList.toggle("delete-button", isDelete);
     elements.heading.textContent = "Movie maintenance";
     elements.help.textContent = "Add needs a new ID. Update needs an existing ID and revised details. Delete needs only an existing ID.";
@@ -207,22 +211,23 @@ function saveMovie(event) {
     closeMaintenance();
 }
 
-// Searches for the entered ID and displays the movie or a no-results message.
+// Displays the movie matching the entered ID in the main list.
 function searchById(event) {
     event.preventDefault();
     // Stores the movie matching the entered ID.
     const movie = movieList.searchById(Number(elements.searchId.value));
+    elements.searchTitle.value = "";
     if (movie === null) {
-        elements.idResult.textContent = "0 results";
+        displayMovies([]);
     } else {
-        elements.idResult.textContent = movie.movieId + ": " + movie.title +
-            " (" + movie.year + "), rating " + movie.rating + "/10";
+        displayMovies([movie]);
     }
 }
 
 // Displays movies containing the entered title text.
 function searchByTitle(event) {
     event.preventDefault();
+    elements.searchId.value = "";
     displayMovies(movieList.searchByTitle(elements.searchTitle.value.trim()));
 }
 
@@ -230,7 +235,6 @@ function searchByTitle(event) {
 function refreshMovies() {
     elements.searchTitle.value = "";
     elements.searchId.value = "";
-    elements.idResult.textContent = "Enter a Movie ID to see its details.";
     displayMovies(movieList.movies);
     // Clears the selected sort indicator after a refresh or maintenance change.
     for (const button of document.querySelectorAll("[data-sort]")) {
